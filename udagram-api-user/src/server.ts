@@ -6,11 +6,10 @@ import {IndexRouter} from './controllers/v0/index.router';
 
 import bodyParser from 'body-parser';
 import {config} from './config/config';
-import {V0_FEED_MODELS, V0_USER_MODELS} from './controllers/v0/model.index';
+import {V0_USER_MODELS} from './controllers/v0/model.index';
 
 
 (async () => {
-  await sequelize.addModels(V0_FEED_MODELS);
   await sequelize.addModels(V0_USER_MODELS);
 
   console.debug("Initialize database connection...");
@@ -18,6 +17,7 @@ import {V0_FEED_MODELS, V0_USER_MODELS} from './controllers/v0/model.index';
 
   const app = express();
   const port = process.env.PORT || 8080;
+  const url = `http://${config.url}:${port}/`
 
   app.use(bodyParser.json());
 
@@ -45,7 +45,7 @@ import {V0_FEED_MODELS, V0_USER_MODELS} from './controllers/v0/model.index';
 
   // Start the Server
   app.listen( port, () => {
-    console.log( `server running ${config.url}` );
+    console.log( `server running ${url}` );
     console.log( `press CTRL+C to stop server` );
   } );
 })();
