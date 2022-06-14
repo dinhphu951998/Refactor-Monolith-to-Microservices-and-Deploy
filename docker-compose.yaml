@@ -8,14 +8,14 @@ services:
     depends_on:
       - backend-user
       - backend-feed
-  postgres:
-    image: postgres
-    ports:
-      - 5432:5432
-    environment:
-      POSTGRES_USER: $POSTGRES_USERNAME
-      POSTGRES_PASSWORD: $POSTGRES_PASSWORD
-      POSTGRES_DB: $POSTGRES_DB
+  # postgres:
+  #   image: postgres
+  #   ports:
+  #     - 5432:5432
+  #   environment:
+  #     POSTGRES_USER: $POSTGRES_USERNAME
+  #     POSTGRES_PASSWORD: $POSTGRES_PASSWORD
+  #     POSTGRES_DB: $POSTGRES_DB
   backend-user:
     image: udagram-api-user
     environment:
@@ -28,8 +28,8 @@ services:
       AWS_BUCKET: $AWS_BUCKET
       JWT_SECRET: $JWT_SECRET
       URL: "http://localhost:8100"
-    depends_on:
-      - postgres
+    # depends_on:
+    #   - postgres
   backend-feed:
     image: udagram-api-feed
     volumes:
@@ -44,8 +44,8 @@ services:
       AWS_BUCKET: $AWS_BUCKET
       JWT_SECRET: $JWT_SECRET
       URL: "http://localhost:8100"
-    depends_on:
-      - postgres
+    # depends_on:
+    #   - postgres
   frontend:
     image: udagram-frontend
     ports:
