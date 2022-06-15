@@ -19,12 +19,12 @@ spec:
         image: dinhphu951998/udagram-api-feed
         ports:
         - containerPort: 8080
-        livenessProbe:
-          httpGet:
-            path: /
-            port: 8080
-          initialDelaySeconds: 10
-          periodSeconds: 5
+        # livenessProbe:
+        #   httpGet:
+        #     path: /
+        #     port: 8080
+        #   initialDelaySeconds: 10
+        #   periodSeconds: 5
         env:
         - name: URL
           valueFrom:
