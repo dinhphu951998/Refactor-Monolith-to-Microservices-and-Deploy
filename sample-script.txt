@@ -1,0 +1,44 @@
+docker image prune --all
+
+docker-compose -f docker-compose-build.yaml build --parallel
+   
+docker-compose up
+
+docker run -p 5432:5432 -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=zaQ12345 -e POSTGRES_DB=postgres -d postgres
+
+------------------------------------
+
+kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
+kubectl get deployment metrics-server -n kube-system
+
+kubectl autoscale deployment backend-feed --cpu-percent=80 --min=1 --max=3
+kubectl autoscale deployment backend-user --cpu-percent=80 --min=1 --max=3
+
+kubectl get hpa
+
+------------------------------------
+
+kubectl expose deployment udagram-reverseproxy --type=LoadBalancer --name=publicreverseproxy
+kubectl expose deployment udagram-frontend --type=LoadBalancer --name=publicfrontend
+
+------------------------------------
+
+kubectl delete deployment backend-feed
+kubectl delete deployment backend-user
+kubectl delete deployment udagram-frontend
+kubectl delete deployment udagram-reverseproxy
+
+------------------------------------
+
+docker --version
+docker-compose -f docker-compose-build.yaml build --parallel
+docker tag reverseproxy dinhphu951998/reverseproxy:latest
+docker tag udagram-frontend dinhphu951998/udagram-frontend:latest
+docker tag udagram-api-user dinhphu951998/udagram-api-user:latest
+docker tag udagram-api-feed dinhphu951998/udagram-api-feed:latest
+
+docker push dinhphu951998/reverseproxy:latest
+docker push dinhphu951998/udagram-frontend:latest
+docker push dinhphu951998/udagram-api-user:latest
+docker push dinhphu951998/udagram-api-feed:latest
+echo "Push completed"
