@@ -6,7 +6,6 @@ metadata:
   name: backend-feed-svc
   namespace: default
 spec:
-  replicas: 2
   ports:
   - port: 8080
     protocol: TCP

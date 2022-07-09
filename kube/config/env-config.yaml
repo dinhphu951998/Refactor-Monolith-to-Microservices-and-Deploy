@@ -3,9 +3,9 @@ kind: ConfigMap
 metadata:
   name: env-config
 data:
-  POSTGRES_HOST: phund15-rds.ctbhpomtnsdu.us-west-2.rds.amazonaws.com
-  POSTGRES_DB: postgres
-  AWS_BUCKET: phund15-s3
+  POSTGRES_HOST: #
+  POSTGRES_DB: #
+  AWS_BUCKET: #
   AWS_REGION: us-west-2
   AWS_PROFILE: default
   JWT_SECRET: testing
