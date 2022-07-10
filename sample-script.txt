@@ -6,6 +6,8 @@ docker-compose up
 
 docker run -p 5432:5432 -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=zaQ12345 -e POSTGRES_DB=postgres -d postgres
 
+docker exec -it <containerId> sh
+
 ------------------------------------
 
 kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
